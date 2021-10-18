@@ -33,7 +33,7 @@ function onTick() {
     var addition = 1;
     var base = 2;
     for (var i = 1; i < countNodes.length; i++) {
-        addition = addition * (base ** counts[i]);
+        addition = addition * (base * counts[i]); // addition = addition * (base ** counts[i]);
         base = base * 2;
     }
 
@@ -66,15 +66,15 @@ function addButton() {
             var addition = 1;
             var base = 2;
             for (var i = subscript + 1; i < countNodes.length; i++) {
-                addition = addition * (base ** counts[i]);
+                addition = addition * (base * counts[i]);  // addition * (base ** counts[i]);
                 base = base * 2;
             }
 
             counts[subscript] = counts[subscript] + addition;
             countNodes[subscript].innerHTML = toUCount(counts[subscript], subscript);
 
-            costs[subscript] = (1 + (3 ** counts[subscript]));
-            costNodes[subscript].innerHTML = toUCount((1 + (3 ** counts[subscript])), subscript - 1);
+            costs[subscript] = (1 + (3 * counts[subscript])); // (1 + (3 ** counts[subscript]));
+            costNodes[subscript].innerHTML = toUCount((1 + (3 * counts[subscript])), subscript - 1); //  toUCount((1 + (3 ** counts[subscript])), subscript - 1);
 
             if ((counts[subscript] == 1) && counts.length == subscript + 1) {
                 addButton();
@@ -95,7 +95,7 @@ function addButton() {
     countNodes.push(countNode);
     costNodes.push(costNode);
     counts.push(0);
-    costs.push((1 + (3 ** counts[subscript])));
+    costs.push((1 + (3 * counts[subscript])));  //  costs.push((1 + (3 ** counts[subscript])));
     countNodes[subscript].innerHTML = toUCount(0, subscript)
-    costNodes[subscript].innerHTML = (1 + (3 ** counts[subscript])).toString().concat(' U').concat((subscript - 1).toString().sub());
+    costNodes[subscript].innerHTML = (1 + (3 * counts[subscript])).toString().concat(' U').concat((subscript - 1).toString().sub());  // (1 + (3 ** counts[subscript])).toString().concat(' U').concat((subscript - 1).toString().sub());
 }
